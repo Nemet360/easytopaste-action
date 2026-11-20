@@ -1,5 +1,8 @@
 # EasyToPaste — one-time secret, from a workflow
 
+On the GitHub Marketplace:
+<https://github.com/marketplace/actions/easytopaste-one-time-secret>
+
 Encrypt a value **inside the runner** and get a one-time link back. The key is
 generated on the runner, stays on the runner, and travels only in the link's
 URL fragment — the part no HTTP client transmits.

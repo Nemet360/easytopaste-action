@@ -124,4 +124,4 @@ file.
 See [LICENSE.md](LICENSE.md). Free to use, including commercially and inside
 CI. Not an open-source maintenance promise.
 
-Questions: <https://easytopaste.com/legal/contact>
+Questions: support@easytopaste.com

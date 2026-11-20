@@ -39,4 +39,4 @@ This licence grants use, not stewardship. Publishing this action is not a
 commitment to maintain it as an open-source project, to accept contributions,
 or to keep publishing future versions.
 
-Questions: https://easytopaste.com/legal/contact
+Questions: support@easytopaste.com

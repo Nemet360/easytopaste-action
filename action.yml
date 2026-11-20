@@ -1,0 +1,74 @@
+name: 'EasyToPaste one-time secret'
+description: 'Encrypt a value inside the runner and get a one-time link out. The key never leaves the job; the service only ever stores ciphertext.'
+author: 'EasyToPaste'
+
+branding:
+  icon: 'lock'
+  color: 'blue'
+
+inputs:
+  secret:
+    description: >-
+      The value to share. Pass it from an encrypted secret
+      (`${{ secrets.DEPLOY_KEY }}`) or from a previous step's output. It is
+      encrypted in this runner and sent as ciphertext; it is never written to
+      the log by this action. It is sent exactly as given, including any
+      trailing newline.
+    required: true
+  days:
+    description: 'Whole days until the link expires on its own, 1 to 30.'
+    required: false
+    default: '1'
+  one-time:
+    description: >-
+      "true" (default) destroys the secret the first time it is read.
+      "false" leaves it readable until it expires.
+    required: false
+    default: 'true'
+  mask:
+    description: >-
+      "true" (default) registers the link, its key fragment and the locator
+      with the runner's log masking, so any step that prints them prints
+      "***". Set "false" only if you intend the link to appear in the log.
+    required: false
+    default: 'true'
+  api-token:
+    description: >-
+      Optional bearer access token. Anonymous callers share a daily
+      creation quota keyed to the runner's egress IP, which hosted runners
+      share — an organisation can spend it. There is no long-lived API key
+      yet, and access tokens last 15 minutes, so this is for a workflow that
+      obtains one in an earlier step. Leave empty to call anonymously.
+    required: false
+    default: ''
+  api-base:
+    description: 'API origin. Override only for a self-hosted deployment.'
+    required: false
+    default: 'https://api.easytopaste.com'
+  app-base:
+    description: 'Web-app origin used to build the link. Override only for a self-hosted deployment.'
+    required: false
+    default: 'https://app.easytopaste.com'
+  fail-on-error:
+    description: >-
+      "true" (default) fails the step when the secret cannot be created.
+      "false" reports the failure in `error-code` and lets the job continue.
+      A malformed `with:` block fails the step either way.
+    required: false
+    default: 'true'
+
+outputs:
+  link:
+    description: 'The full one-time link, key fragment included. Masked in the log unless `mask` is "false".'
+  locator:
+    description: 'The secret id. Not enough to decrypt, but enough to burn the secret, so treat it as sensitive.'
+  expires-at:
+    description: 'ISO-8601 expiry reported by the API, or empty if it reported none.'
+  one-time:
+    description: '"true" if the first read destroys the secret.'
+  error-code:
+    description: 'Empty on success; otherwise the machine-readable failure code (for example `quota_exceeded`, `rate_limited`, `invalid_input`, `network`).'
+
+runs:
+  using: 'node20'
+  main: 'src/main.js'

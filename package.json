@@ -1,0 +1,20 @@
+{
+  "name": "easytopaste-action",
+  "version": "0.1.0",
+  "private": true,
+  "published": true,
+  "description": "GitHub Action: encrypt a value in the runner and emit a one-time EasyToPaste link.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "homepage": "https://easytopaste.com/developers/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nemet360/easytopaste-action"
+  }
+}

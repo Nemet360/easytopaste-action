@@ -1,5 +1,5 @@
 name: 'EasyToPaste one-time secret'
-description: 'Encrypt a value inside the runner and get a one-time link out. The key never leaves the job; the service only ever stores ciphertext.'
+description: 'Encrypt a value inside the runner and get a one-time link. The key never leaves the job.'
 author: 'EasyToPaste'
 
 branding:
